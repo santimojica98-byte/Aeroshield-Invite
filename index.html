@@ -132,9 +132,28 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-fa
 .env-seal:hover .seal-txt{text-shadow:0 0 20px var(--gold);}
 .seal-hint{font-family:var(--font-mono);font-size:7px;letter-spacing:4px;color:var(--gold-light);text-transform:uppercase;animation:glowPulse 2s infinite;}
 
+/* Nombre del Invitado (Principio del Sobre) */
+.env-guest-name {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 40; /* Flota sobre la solapa */
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--gold-light);
+  text-shadow: 0 0 15px rgba(212,175,55,0.5);
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+#env.open .env-guest-name { opacity: 0; }
+
 /* Meta tags en el sobre */
 .env-meta-l{position:absolute;bottom:25px;left:35px;z-index:15;font-family:var(--font-mono);font-size:8px;letter-spacing:3px;color:#555;text-transform:uppercase;}
-.env-meta-r{position:absolute;top:25px;right:35px;z-index:15;font-family:var(--font-mono);font-size:8px;letter-spacing:3px;color:#555;text-transform:uppercase;text-align:right;}
 
 /* ── LA TARJETA EMERGENTE ── */
 #card{position:absolute;width:100%;max-width:400px;height:560px;bottom:40%;left:50%;transform:translate(-50%, 80%) translateZ(-10px) rotateX(10deg);opacity:0;z-index:11;transition:all 1.8s cubic-bezier(0.25, 1, 0.2, 1);pointer-events:none;}
@@ -315,6 +334,9 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-fa
   .bb-q { font-size: 10px; line-height: 1.4; }
   .bb-logo2 { font-size: 14px; }
   
+  /* Nombre flotante del invitado para móvil */
+  .env-guest-name { font-size: 18px; top: 30px; }
+
   /* Botones y UI */
   .btn-lang, #btnReset { font-size: 9px; padding: 6px 12px; top: 15px; }
   .btn-lang { left: 15px; }
@@ -401,7 +423,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-fa
         </div>
 
         <div class="env-meta-l" data-es="Edición Limitada" data-en="Limited Edition">Edición Limitada</div>
-        <div class="env-meta-r" data-es="Acceso VIP" data-en="VIP Access">Acceso VIP</div>
+        <div class="env-guest-name" id="guestNameEnv">Invitado VIP</div>
       </div>
 
       <!-- TARJETA EMERGENTE -->
@@ -415,6 +437,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-fa
             </div>
             <div class="ci-rule"></div>
             <div class="ci-body">
+              <div id="guestNameCard1" style="font-family: var(--font-mono); font-size: 9px; color: var(--gold-dark); text-transform: uppercase; margin-bottom: 15px; letter-spacing: 2px;"></div>
               <span data-es="Para el motociclista que sale todos los días." data-en="For the motorcyclist who rides every day.">Para el motociclista que sale todos los días.</span><br>
               <span data-es="Para el padre, la madre, el hijo o la hija que solo quiere volver a casa." data-en="For the father, mother, son, or daughter who just wants to make it home.">Para el padre, la madre, el hijo o la hija que solo quiere volver a casa.</span><br><br>
               <span data-es="AeroShield no es un accesorio." data-en="AeroShield isn't an accessory.">AeroShield no es un accesorio.</span><br>
@@ -449,6 +472,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-fa
         </div>
         <div class="rc-rule"></div>
         <div class="rc-body">
+          <div id="guestNameCard2" style="font-family: var(--font-mono); font-size: 10px; color: var(--gold-dark); text-transform: uppercase; margin-bottom: 20px; letter-spacing: 2px;"></div>
           <span data-es="Para el motociclista que sale todos los días." data-en="For the motorcyclist who rides every day.">Para el motociclista que sale todos los días.</span><br>
           <span data-es="Para el padre, la madre, el hijo o la hija que solo quiere volver a casa." data-en="For the father, mother, son, or daughter who just wants to make it home.">Para el padre, la madre, el hijo o la hija que solo quiere volver a casa.</span><br><br>
           <span data-es="AeroShield no es un accesorio." data-en="AeroShield isn't an accessory.">AeroShield no es un accesorio.</span><br>
@@ -496,7 +520,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-fa
                   <div class="bf-inc-sub" style="color: var(--gold-light);" data-es="VÁLIDO SOLO CON ASISTENCIA AL EVENTO" data-en="VALID ONLY WITH EVENT ATTENDANCE">VÁLIDO SOLO CON ASISTENCIA AL EVENTO</div>
                 </div>
                 <div class="bf-code">
-                  <div class="bf-code-n">VIP · 0001</div>
+                  <div class="bf-code-n" id="voucherCode">VIP · 0001</div>
                   <div class="bars">
                     <span style="width:2px"></span><span style="width:4px"></span><span style="width:2px"></span><span style="width:6px"></span>
                     <span style="width:3px"></span><span style="width:2px"></span><span style="width:5px"></span><span style="width:4px"></span>
@@ -517,6 +541,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-fa
                 <span data-es="Porque la seguridad de los que amas no es negociable." data-en="Because the safety of those you love is non-negotiable.">Porque la seguridad de los que amas no es negociable.</span>
               </div>
               <div class="bb-fields">
+                <div class="bb-field"><span class="bb-fl" data-es="Para" data-en="For">Para</span><div class="bb-fl-line"></div> <span id="guestNameVoucher" style="font-family:var(--font-mono);font-size:9px;color:var(--gold-dark);text-transform:uppercase;font-weight:bold;">Invitado VIP</span></div>
                 <div class="bb-field"><span class="bb-fl" data-es="Incluye" data-en="Includes">Incluye</span><div class="bb-fl-line"></div> <span style="font-family:var(--font-mono);font-size:8px;color:#5c5346;" data-es="Deflector + Guía + Certificado" data-en="Deflector + Guide + Certificate">Deflector + Guía + Certificado</span></div>
                 <div class="bb-field"><span class="bb-fl" data-es="Condición" data-en="Condition">Condición</span><div class="bb-fl-line"></div> <span style="font-family:var(--font-mono);font-size:8px;color:var(--gold-dark);" data-es="Requiere asistencia presencial" data-en="Requires in-person attendance">Requiere asistencia presencial</span></div>
               </div>
@@ -828,6 +853,52 @@ function resetAll(){
   }, 500);
 }
 
+/* ── PERSONALIZACIÓN POR URL (NOMBRES DINÁMICOS) BLINDADO ── */
+function initGuestSystem() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const rawName = urlParams.get('n'); 
+  const guestId = urlParams.get('id') || '0001'; 
+  const isDefaultGuest = !rawName || rawName.trim() === '';
+
+  // Limpiamos el nombre para seguridad
+  const guestName = rawName ? decodeURIComponent(rawName).replace(/</g, "&lt;").replace(/>/g, "&gt;") : null;
+
+  const envEl = document.getElementById('guestNameEnv');
+  const voucherEl = document.getElementById('guestNameVoucher');
+  const codeEl = document.getElementById('voucherCode');
+  const card1El = document.getElementById('guestNameCard1');
+  const card2El = document.getElementById('guestNameCard2');
+  
+  let displayName = isDefaultGuest ? (currentLang === 'es' ? 'Invitado VIP' : 'VIP Guest') : guestName;
+  let cardPrefix = currentLang === 'es' ? 'RESERVADO PARA:' : 'RESERVED FOR:';
+  
+  // Coloca el nombre en la solapa y bonos
+  if(envEl) envEl.innerHTML = isDefaultGuest ? displayName : `${displayName}`;
+  if(voucherEl) voucherEl.innerHTML = displayName;
+  if(codeEl) codeEl.innerHTML = `VIP · ${guestId}`;
+  
+  if(card1El) {
+    if (isDefaultGuest) {
+        card1El.style.display = 'none';
+    } else {
+        card1El.style.display = 'block';
+        card1El.innerHTML = `${cardPrefix} <br><strong style="font-size:16px; color: var(--dark); font-family: var(--font-serif); font-style: italic; letter-spacing: 0; text-transform: capitalize;">${displayName}</strong>`;
+    }
+  }
+  
+  if(card2El) {
+    if (isDefaultGuest) {
+        card2El.style.display = 'none';
+    } else {
+        card2El.style.display = 'block';
+        card2El.innerHTML = `${cardPrefix} <br><strong style="font-size:20px; color: var(--dark); font-family: var(--font-serif); font-style: italic; letter-spacing: 0; text-transform: capitalize;">${displayName}</strong>`;
+    }
+  }
+}
+
+// Exponer la función globalmente para el botón de cambio de idioma
+window.updateGuestName = initGuestSystem;
+
 /* ── TOGGLE IDIOMA (ES / EN) ── */
 let currentLang = 'es';
 function toggleLang(){
@@ -837,6 +908,16 @@ function toggleLang(){
   document.querySelectorAll('[data-es]').forEach(el => {
     el.innerText = el.getAttribute(`data-${currentLang}`);
   });
+  
+  // Refrescar el nombre para que se traduzca "Invitado VIP"
+  initGuestSystem();
+}
+
+// Inicializar apenas el DOM esté 100% listo (Soluciona bugs en celulares/WhatsApp)
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initGuestSystem);
+} else {
+  initGuestSystem();
 }
 </script>
 </body>
