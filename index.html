@@ -261,14 +261,14 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-fa
 @keyframes confettiFall{0%{transform:translateY(-10vh) rotate(0deg);opacity:1;}100%{transform:translateY(110vh) rotate(720deg);opacity:0;}}
 
 /* ── BOTONES INFERIORES (FECHA Y MAPA) ── */
-.scene-footer {flex-basis:100%;display:flex;justify-content:center;gap:24px;margin-top:-20px;opacity:0;transition:opacity 1s ease 1.5s;z-index:10;}
+.scene-footer {flex-basis:100%;display:flex;justify-content:center;gap:24px;margin-top:60px;margin-bottom:40px;opacity:0;transition:opacity 1s ease 1.5s;z-index:10;}
 #readerScene.visible .scene-footer {opacity:1;}
-.sf-btn {background:rgba(10,10,10,0.6);border:1px solid rgba(212,175,55,0.3);color:var(--gold);font-family:var(--font-mono);font-size:10px;padding:14px 30px;letter-spacing:4px;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all 0.4s ease;backdrop-filter:blur(5px);display:flex;align-items:center;gap:12px;border-radius:2px;}
-.sf-btn svg {opacity:0.8;transition:opacity 0.3s;}
-.sf-btn:hover {background:rgba(212,175,55,0.1);border-color:var(--gold);box-shadow:0 0 20px rgba(212,175,55,0.2);color:var(--white);}
+.sf-btn {background:rgba(20,20,20,0.85);border:1px solid rgba(212,175,55,0.5);color:var(--gold-light);font-family:var(--font-mono);font-size:11px;padding:16px 36px;letter-spacing:4px;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all 0.4s ease;backdrop-filter:blur(10px);display:flex;align-items:center;gap:12px;border-radius:4px;box-shadow:0 8px 20px rgba(0,0,0,0.6);}
+.sf-btn svg {opacity:0.9;transition:opacity 0.3s;}
+.sf-btn:hover {background:rgba(212,175,55,0.15);border-color:var(--gold);box-shadow:0 0 25px rgba(212,175,55,0.25);color:var(--white);}
 .sf-btn:hover svg {opacity:1;}
-.sf-date {border-color:rgba(255,255,255,0.1);color:#8a7f6c;pointer-events:none;}
-.sf-date svg {opacity:0.6;}
+.sf-date {border-color:rgba(212,175,55,0.25);color:#c9b685;pointer-events:none;}
+.sf-date svg {opacity:0.8;}
 
 /* ── MEDIA QUERIES ESTRATÉGICOS (RESPONSIVE BLINDADO) ── */
 
@@ -282,20 +282,26 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-fa
   #envWrap { transform: scale(0.75); }
   .reader-card { height: auto; min-height: 500px; }
   .bono-reveal { max-width: 440px; height: 260px; }
-  .rc-inner { padding: 40px 30px; }
+  .rc-inner { padding: 40px 30px 50px 30px; }
   .rc-h { font-size: 42px; }
   .rc-h span { font-size: 48px; }
-  .scene-footer { flex-direction: column; align-items: center; gap: 15px; }
+  .scene-footer { flex-direction: column; align-items: center; gap: 15px; margin-top: 40px; }
   .sf-btn { width: 100%; max-width: 320px; justify-content: center; }
 }
 
 @media(max-width: 480px) {
   #envWrap { transform: scale(0.55); }
   .rs-content { gap: 50px; padding-top: 120px; }
-  .rc-inner { padding: 35px 24px; }
+  .rc-inner { padding: 35px 24px 55px 24px; }
   .rc-h { font-size: 34px; }
   .rc-h span { font-size: 40px; }
-  .rc-body { font-size: 14px; }
+  .rc-body { font-size: 14px; line-height: 1.8; }
+  
+  /* Ajuste refinado Detalles del Evento para Móviles */
+  .rc-ev { margin-top: 20px; padding-top: 20px; }
+  .rc-ev-date { font-size: 20px; }
+  .rc-ev-time { font-size: 10px; margin-top: 4px; }
+  .rc-ev-place { font-size: 11px; margin-top: 5px; }
   
   /* Ajuste del Bono para móviles pequeños */
   .bono-reveal { max-width: 340px; height: 200px; }
