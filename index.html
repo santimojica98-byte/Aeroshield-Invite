@@ -16,12 +16,13 @@
   --font-sans:'Outfit', sans-serif;
   --font-mono:'DM Mono', monospace;
 }
-html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-family:var(--font-sans);color:var(--white);cursor:none;user-select:none; -webkit-tap-highlight-color: transparent;}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-family:var(--font-sans);color:var(--white);user-select:none; -webkit-tap-highlight-color: transparent;}
 
-/* ── CURSOR CUSTOM ── */
-#cur{width:6px;height:6px;background:var(--gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;box-shadow:0 0 10px var(--gold);transition:transform 0.1s;}
-#curR{width:40px;height:40px;border:1px solid rgba(212,175,55,0.3);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:width 0.3s,height 0.3s,border-color 0.3s,background 0.3s; transform:translate(-50%, -50%);}
-#curR.hover{width:60px;height:60px;border-color:var(--gold);background:rgba(212,175,55,0.05);backdrop-filter:blur(2px);}
+/* ── SCROLLBAR PERSONALIZADO LUXURY ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: rgba(212,175,55,0.3); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(212,175,55,0.6); }
 
 /* ── FX: GRAIN & LUZ VOLUMÉTRICA ── */
 .grain{position:fixed;inset:-50%;width:200%;height:200%;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.06'/%3E%3C/svg%3E");pointer-events:none;z-index:7000;opacity:0.4;animation:grain 0.4s steps(2) infinite;}
@@ -41,15 +42,15 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-fa
 @keyframes rotateRays{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
 
 /* ── UI GLOBALES ── */
-.btn-lang{position:fixed;top:30px;left:30px;z-index:8000;background:transparent;border:1px solid rgba(212,175,55,0.3);color:var(--gold);font-family:var(--font-mono);font-size:10px;padding:8px 16px;border-radius:30px;letter-spacing:2px;cursor:none;transition:all 0.3s ease;text-transform:uppercase;}
+.btn-lang{position:fixed;top:30px;left:30px;z-index:8000;background:transparent;border:1px solid rgba(212,175,55,0.3);color:var(--gold);font-family:var(--font-mono);font-size:10px;padding:8px 16px;border-radius:30px;letter-spacing:2px;cursor:pointer;transition:all 0.3s ease;text-transform:uppercase;}
 .btn-lang:hover{background:rgba(212,175,55,0.1);border-color:var(--gold);box-shadow:0 0 15px rgba(212,175,55,0.2);}
-#btnReset{position:fixed;top:30px;right:30px;z-index:8000;background:transparent;border:1px solid rgba(255,255,255,0.1);color:var(--white);font-family:var(--font-mono);font-size:10px;padding:8px 16px;border-radius:30px;letter-spacing:2px;cursor:none;transition:all 0.3s;opacity:0;pointer-events:none;text-transform:uppercase;}
+#btnReset{position:fixed;top:30px;right:30px;z-index:8000;background:transparent;border:1px solid rgba(255,255,255,0.1);color:var(--white);font-family:var(--font-mono);font-size:10px;padding:8px 16px;border-radius:30px;letter-spacing:2px;cursor:pointer;transition:all 0.3s;opacity:0;pointer-events:none;text-transform:uppercase;}
 #btnReset.visible{opacity:1;pointer-events:all;}
 #btnReset:hover{border-color:var(--gold);color:var(--gold);}
 
 /* ── PANTALLA INICIO (AUDIO UNLOCK) ── */
 #start-overlay{position:fixed;inset:0;background:var(--black);z-index:9000;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 1s ease, backdrop-filter 1s ease;}
-.start-btn{background:none;border:none;color:var(--gold);font-family:var(--font-mono);font-size:11px;letter-spacing:6px;text-transform:uppercase;cursor:none;position:relative;padding:20px;}
+.start-btn{background:none;border:none;color:var(--gold);font-family:var(--font-mono);font-size:11px;letter-spacing:6px;text-transform:uppercase;cursor:pointer;position:relative;padding:20px;}
 .start-btn::after{content:'';position:absolute;bottom:10px;left:50%;transform:translateX(-50%);width:0;height:1px;background:var(--gold);transition:width 0.4s ease;}
 .start-btn:hover::after{width:80%;}
 .start-btn.pulse-anim{animation:glowPulse 2s infinite;}
@@ -72,12 +73,11 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-fa
 .intro-label em{display:block;color:var(--gold);font-family:var(--font-serif);font-style:italic;font-size:24px;margin-bottom:8px;letter-spacing:2px;}
 
 /* ── SOBRE 3D WRAPPER ── */
-#envWrap{position:relative;width:600px;height:380px;perspective:2500px;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 1.2s ease;z-index:20;}
+#envWrap{position:relative;width:600px;max-width:90vw;height:380px;perspective:2500px;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 1.2s ease;z-index:20;}
 #envWrap.visible{opacity:1;}
-@media(max-width:768px){#envWrap{transform:scale(0.65);}}
 
 /* ── EL SOBRE ── */
-#env{width:100%;height:100%;position:relative;transform-style:preserve-3d;cursor:none;animation:envFloat 6s ease-in-out infinite;}
+#env{width:100%;height:100%;position:relative;transform-style:preserve-3d;cursor:pointer;animation:envFloat 6s ease-in-out infinite;}
 @keyframes envFloat{0%,100%{transform:translateY(0) rotateX(2deg) rotateY(0deg)}50%{transform:translateY(-15px) rotateX(-2deg) rotateY(2deg)}}
 #env.no-float{animation:none!important;transition:transform 0.8s cubic-bezier(0.16,1,0.3,1);}
 
@@ -113,7 +113,6 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-fa
 
 /* Solapa Animada */
 .env-flap{position:absolute;top:0;left:0;right:0;width:0;height:0;border-left:300px solid transparent;border-right:300px solid transparent;border-top:200px solid #0d0d0d;transform-origin:top center;transition:transform 1.4s cubic-bezier(0.25, 1, 0.25, 1);z-index:30;filter:drop-shadow(0 10px 15px rgba(0,0,0,0.8));}
-/* Filo interno de la solapa */
 .env-flap::after{content:'';position:absolute;top:-200px;left:-300px;border-left:300px solid transparent;border-right:300px solid transparent;border-top:200px solid transparent;border-top-color:rgba(212,175,55,0.15);pointer-events:none;transform:scale(0.99);}
 #env.open .env-flap{transform:rotateX(-180deg);}
 
@@ -123,27 +122,22 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-fa
 .env-bottom{position:absolute;bottom:0;left:0;right:0;width:0;height:0;border-left:300px solid transparent;border-right:300px solid transparent;border-bottom:190px solid #141414;z-index:12;filter:drop-shadow(0 -5px 15px rgba(0,0,0,0.6));}
 
 /* Sello de Cera Luminoso */
-.env-seal{position:absolute;top:55%;left:50%;transform:translate(-50%,-50%);z-index:35;display:flex;flex-direction:column;align-items:center;gap:12px;transition:opacity 0.4s ease, transform 0.6s ease;pointer-events:none;}
-#env.open .env-seal{opacity:0;transform:translate(-50%,-50%) scale(0.5) translateZ(-50px);}
-.seal-wax{width:90px;height:90px;border-radius:50%;background:radial-gradient(circle at 30% 30%, #ffd700, #d4af37 40%, #8a6300 80%, #332400);box-shadow:0 10px 30px rgba(0,0,0,0.8), 0 0 40px rgba(212,175,55,0.3), inset 0 0 10px rgba(255,255,255,0.5);display:flex;align-items:center;justify-content:center;position:relative;border:1px solid #ffeba1;}
+.env-seal{position:absolute;top:55%;left:50%;transform:translate(-50%,-50%);z-index:35;display:flex;flex-direction:column;align-items:center;gap:12px;transition:opacity 0.4s ease, transform 0.6s ease;cursor:pointer;pointer-events:auto;}
+.env-seal:hover .seal-wax{transform:scale(1.08);box-shadow:0 15px 40px rgba(0,0,0,0.9), 0 0 60px rgba(212,175,55,0.6), inset 0 0 15px rgba(255,255,255,0.8);}
+#env.open .env-seal{opacity:0;transform:translate(-50%,-50%) scale(0.5) translateZ(-50px);pointer-events:none;}
+.seal-wax{width:90px;height:90px;border-radius:50%;background:radial-gradient(circle at 30% 30%, #ffd700, #d4af37 40%, #8a6300 80%, #332400);box-shadow:0 10px 30px rgba(0,0,0,0.8), 0 0 40px rgba(212,175,55,0.3), inset 0 0 10px rgba(255,255,255,0.5);display:flex;align-items:center;justify-content:center;position:relative;border:1px solid #ffeba1;transition:all 0.4s cubic-bezier(0.16,1,0.3,1);}
 .seal-wax::before{content:'';position:absolute;inset:6px;border-radius:50%;border:1px solid rgba(255,255,255,0.3);box-shadow:inset 0 0 10px rgba(0,0,0,0.5);}
 .seal-wax svg{filter:drop-shadow(0 2px 2px rgba(0,0,0,0.4));}
-.seal-txt{font-family:var(--font-mono);font-size:8px;letter-spacing:5px;color:var(--gold);text-transform:uppercase;text-shadow:0 0 10px var(--gold-glow);}
+.seal-txt{font-family:var(--font-mono);font-size:8px;letter-spacing:5px;color:var(--gold);text-transform:uppercase;text-shadow:0 0 10px var(--gold-glow);transition:text-shadow 0.3s;}
+.env-seal:hover .seal-txt{text-shadow:0 0 20px var(--gold);}
+.seal-hint{font-family:var(--font-mono);font-size:7px;letter-spacing:4px;color:var(--gold-light);text-transform:uppercase;animation:glowPulse 2s infinite;}
 
 /* Meta tags en el sobre */
 .env-meta-l{position:absolute;bottom:25px;left:35px;z-index:15;font-family:var(--font-mono);font-size:8px;letter-spacing:3px;color:#555;text-transform:uppercase;}
 .env-meta-r{position:absolute;top:25px;right:35px;z-index:15;font-family:var(--font-mono);font-size:8px;letter-spacing:3px;color:#555;text-transform:uppercase;text-align:right;}
 
-/* Botón Abrir Premium */
-#btnOpen{position:absolute;bottom:-90px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg, transparent, rgba(212,175,55,0.1), transparent);border:1px solid rgba(212,175,55,0.4);color:var(--gold);font-family:var(--font-mono);font-size:11px;letter-spacing:5px;text-transform:uppercase;padding:16px 40px;cursor:none;transition:all 0.5s cubic-bezier(0.16, 1, 0.3, 1);white-space:nowrap;backdrop-filter:blur(5px);box-shadow:0 0 30px rgba(212,175,55,0.05);}
-#btnOpen::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg, transparent, rgba(212,175,55,0.4), transparent);transform:translateX(-100%);transition:transform 0.6s;}
-#btnOpen:hover::before{transform:translateX(100%);}
-#btnOpen:hover{border-color:var(--gold-light);box-shadow:0 0 40px rgba(212,175,55,0.3);color:var(--white);text-shadow:0 0 10px var(--gold);}
-#btnOpen.hidden{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(20px);}
-
 /* ── LA TARJETA EMERGENTE ── */
-#card{position:absolute;width:400px;height:560px;bottom:40%;left:50%;transform:translate(-50%, 80%) translateZ(-10px) rotateX(10deg);opacity:0;z-index:11;transition:all 1.8s cubic-bezier(0.25, 1, 0.2, 1);pointer-events:none;}
-/* El z-index 11 la pone detrás de la solapa inferior (z-index 12) pero delante del interior del sobre */
+#card{position:absolute;width:100%;max-width:400px;height:560px;bottom:40%;left:50%;transform:translate(-50%, 80%) translateZ(-10px) rotateX(10deg);opacity:0;z-index:11;transition:all 1.8s cubic-bezier(0.25, 1, 0.2, 1);pointer-events:none;}
 #card.rise{bottom:110%;opacity:1;transform:translate(-50%, 0) translateZ(50px) rotateX(0deg);box-shadow:0 50px 100px rgba(0,0,0,0.9), 0 0 40px rgba(212,175,55,0.1);}
 
 .card-face{width:100%;height:100%;background:linear-gradient(145deg, var(--white), var(--offwhite));position:relative;overflow:hidden;border-radius:4px;color:var(--dark);}
@@ -155,7 +149,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-fa
 .ci-inner{padding:50px 40px;height:100%;display:flex;flex-direction:column;position:relative;z-index:2;}
 .ci-eyebrow{font-family:var(--font-mono);font-size:9px;letter-spacing:5px;text-transform:uppercase;color:#8a7f6c;margin-bottom:30px;display:flex;align-items:center;gap:12px;}
 .ci-eyebrow::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(212,175,55,0.5),transparent);}
-.ci-title{font-family:var(--font-serif);font-size:48px;font-weight:900;line-height:0.95;color:var(--dark);letter-spacing:-1px;margin-bottom:30px;text-transform:uppercase;}
+.ci-title{font-family:var(--font-serif);font-size:48px;font-weight:900;line-height:0.95;color:var(--dark);letter-spacing:-1px;margin-bottom:30px;text-transform:uppercase; word-wrap: break-word;}
 .ci-title span{display:block;font-style:italic;color:var(--gold-dark);font-size:56px;font-weight:400;text-transform:none;}
 .ci-rule{width:50px;height:2px;background:var(--gold);margin-bottom:25px;}
 .ci-body{font-family:var(--font-serif);font-size:15px;font-style:italic;line-height:1.9;color:#5c5346;margin-bottom:auto;}
@@ -167,11 +161,13 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-fa
 .ci-ev-place{font-family:var(--font-sans);font-size:12px;font-weight:300;color:#7a6d5c;margin-top:8px;letter-spacing:0.5px;line-height:1.4;}
 
 /* ── ESTADO 3: ESCENA DE LECTURA + BONO ── */
-#readerScene{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse 90% 90% at 50% 50%,#0a0a0a 0%,var(--black) 100%);opacity:0;pointer-events:none;transition:opacity 1s ease;z-index:500;gap:80px;flex-wrap:wrap;padding:40px;perspective:2000px;}
+#readerScene{position:fixed;inset:0;background:radial-gradient(ellipse 90% 90% at 50% 50%,#0a0a0a 0%,var(--black) 100%);opacity:0;pointer-events:none;transition:opacity 1s ease;z-index:500;overflow-y:auto;overflow-x:hidden;}
 #readerScene.visible{opacity:1;pointer-events:all;}
 
+.rs-content{display:flex;align-items:center;justify-content:center;gap:60px;flex-wrap:wrap;padding:max(8vh, 60px) 5%;min-height:100%;max-width:1400px;margin:0 auto;perspective:2000px;}
+
 /* Tarjeta Lectora (Misma estética que la emergente pero más grande) */
-.reader-card{width:420px;height:600px;background:linear-gradient(145deg, var(--white), var(--offwhite));position:relative;overflow:hidden;border-radius:4px;box-shadow:0 80px 160px rgba(0,0,0,1), 0 0 0 1px rgba(255,255,255,0.1);flex-shrink:0;transform:translateY(50px) rotateX(5deg);opacity:0;transition:transform 1.2s cubic-bezier(0.16,1,0.3,1) 0.3s, opacity 1s ease 0.3s;}
+.reader-card{width:100%;max-width:420px;height:600px;background:linear-gradient(145deg, var(--white), var(--offwhite));position:relative;overflow:hidden;border-radius:4px;box-shadow:0 80px 160px rgba(0,0,0,1), 0 0 0 1px rgba(255,255,255,0.1);flex-shrink:0;transform:translateY(50px) rotateX(5deg);opacity:0;transition:transform 1.2s cubic-bezier(0.16,1,0.3,1) 0.3s, opacity 1s ease 0.3s;}
 #readerScene.visible .reader-card{transform:translateY(0) rotateX(0deg);opacity:1;}
 .reader-card::before{content:'';position:absolute;top:0;bottom:0;left:0;width:6px;background:linear-gradient(180deg, var(--gold-light), var(--gold), var(--gold-dark));}
 /* Barra progreso lectura */
@@ -182,7 +178,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-fa
 .rc-inner{padding:60px 48px;height:100%;display:flex;flex-direction:column;}
 .rc-eye{font-family:var(--font-mono);font-size:9px;letter-spacing:5px;text-transform:uppercase;color:#8a7f6c;margin-bottom:25px;display:flex;align-items:center;gap:12px;}
 .rc-eye::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(212,175,55,0.5),transparent);}
-.rc-h{font-family:var(--font-serif);font-size:52px;font-weight:900;line-height:0.95;color:var(--dark);letter-spacing:-1px;margin-bottom:25px;text-transform:uppercase;}
+.rc-h{font-family:var(--font-serif);font-size:52px;font-weight:900;line-height:0.95;color:var(--dark);letter-spacing:-1px;margin-bottom:25px;text-transform:uppercase; word-wrap: break-word;}
 .rc-h span{display:block;font-style:italic;color:var(--gold-dark);font-size:62px;font-weight:400;text-transform:none;}
 .rc-rule{width:50px;height:2px;background:var(--gold);margin-bottom:25px;}
 .rc-body{font-family:var(--font-serif);font-size:15px;font-style:italic;line-height:2.1;color:#5c5346;margin-bottom:auto;}
@@ -194,7 +190,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-fa
 .rc-ev-place{font-family:var(--font-sans);font-size:12px;font-weight:300;color:#7a6d5c;margin-top:8px;line-height:1.4;}
 
 /* BONO DE REGALO REVEAL */
-.bono-reveal{width:480px;height:280px;position:relative;perspective:1500px;flex-shrink:0;transform:translateX(100px) rotateY(-10deg);opacity:0;transition:transform 1.2s cubic-bezier(0.16,1,0.3,1) 0.6s, opacity 1s ease 0.6s;pointer-events:none;}
+.bono-wrap {display:flex;flex-direction:column;align-items:center;position:relative; width: 100%; max-width: 480px;}
+.bono-reveal{width:100%; height:280px;position:relative;perspective:1500px;flex-shrink:0;transform:translateX(100px) rotateY(-10deg);opacity:0;transition:transform 1.2s cubic-bezier(0.16,1,0.3,1) 0.6s, opacity 1s ease 0.6s;pointer-events:none;cursor:pointer;}
 #readerScene.visible .bono-reveal.unlocked{transform:translateX(0) rotateY(0deg);opacity:1;pointer-events:all;}
 
 /* Efecto super glow al aparecer */
@@ -227,7 +224,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-fa
 .bf-bot{display:flex;justify-content:space-between;align-items:flex-end;}
 .bf-inc-lbl{font-family:var(--font-mono);font-size:8px;letter-spacing:4px;color:#666;text-transform:uppercase;margin-bottom:4px;}
 .bf-inc-val{font-family:var(--font-serif);font-size:22px;font-weight:700;color:var(--gold);}
-.bf-inc-sub{font-family:var(--font-mono);font-size:9px;letter-spacing:2px;color:#888;text-transform:uppercase;margin-top:2px;}
+.bf-inc-sub{font-family:var(--font-mono);font-size:9px;letter-spacing:2px;color:var(--gold-light);text-transform:uppercase;margin-top:2px;}
 .bf-code{text-align:right;}
 .bf-code-n{font-family:var(--font-mono);font-size:11px;letter-spacing:3px;color:#888;}
 .bars{display:flex;gap:3px;margin-top:8px;justify-content:flex-end;opacity:0.5;}
@@ -253,7 +250,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-fa
 @keyframes blk{0%,100%{color:#666;}50%{color:var(--gold);text-shadow:0 0 10px rgba(212,175,55,0.5);}}
 .bono-title{font-family:var(--font-mono);font-size:9px;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:25px;text-align:center;opacity:0;transition:opacity 1s ease;}
 .bono-reveal.unlocked ~ .bono-title{opacity:1;}
-#activationMsg{position:absolute;bottom:-60px;left:50%;transform:translateX(-50%);white-space:nowrap;font-family:var(--font-mono);font-size:10px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;opacity:0;transition:opacity 1s ease;text-shadow:0 0 10px rgba(212,175,55,0.3);}
+#activationMsg{position:absolute;bottom:-50px;left:50%;transform:translateX(-50%);white-space:nowrap;font-family:var(--font-mono);font-size:10px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;opacity:0;transition:opacity 1s ease;text-shadow:0 0 10px rgba(212,175,55,0.3);}
 .bono-reveal.unlocked ~ #activationMsg{opacity:1;}
 
 /* ── PARTÍCULAS Y SPARKS ── */
@@ -266,19 +263,62 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-fa
 /* ── BOTONES INFERIORES (FECHA Y MAPA) ── */
 .scene-footer {flex-basis:100%;display:flex;justify-content:center;gap:24px;margin-top:-20px;opacity:0;transition:opacity 1s ease 1.5s;z-index:10;}
 #readerScene.visible .scene-footer {opacity:1;}
-.sf-btn {background:rgba(10,10,10,0.6);border:1px solid rgba(212,175,55,0.3);color:var(--gold);font-family:var(--font-mono);font-size:10px;padding:14px 30px;letter-spacing:4px;text-transform:uppercase;text-decoration:none;cursor:none;transition:all 0.4s ease;backdrop-filter:blur(5px);display:flex;align-items:center;gap:12px;border-radius:2px;}
+.sf-btn {background:rgba(10,10,10,0.6);border:1px solid rgba(212,175,55,0.3);color:var(--gold);font-family:var(--font-mono);font-size:10px;padding:14px 30px;letter-spacing:4px;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all 0.4s ease;backdrop-filter:blur(5px);display:flex;align-items:center;gap:12px;border-radius:2px;}
 .sf-btn svg {opacity:0.8;transition:opacity 0.3s;}
 .sf-btn:hover {background:rgba(212,175,55,0.1);border-color:var(--gold);box-shadow:0 0 20px rgba(212,175,55,0.2);color:var(--white);}
 .sf-btn:hover svg {opacity:1;}
 .sf-date {border-color:rgba(255,255,255,0.1);color:#8a7f6c;pointer-events:none;}
 .sf-date svg {opacity:0.6;}
 
-/* Media Queries base */
-@media(max-width: 1000px) {
-  #readerScene{flex-direction:column;gap:40px;padding:20px;overflow-y:auto;}
-  .reader-card, .bono-reveal{transform:none !important; margin:0 auto;}
-  .scene-footer {flex-direction:column;align-items:center;width:100%;gap:15px;}
-  .sf-btn {width:100%;max-width:320px;justify-content:center;}
+/* ── MEDIA QUERIES ESTRATÉGICOS (RESPONSIVE BLINDADO) ── */
+
+/* Quiebre principal: Cuando la pantalla no es suficientemente ancha para tener tarjeta + bono en una fila */
+@media(max-width: 1150px) {
+  .rs-content { flex-direction: column; gap: 60px; padding: 100px 20px 80px 20px; }
+  .reader-card, .bono-reveal { transform: none !important; margin: 0 auto; }
+}
+
+@media(max-width: 768px) {
+  #envWrap { transform: scale(0.75); }
+  .reader-card { height: auto; min-height: 500px; }
+  .bono-reveal { max-width: 440px; height: 260px; }
+  .rc-inner { padding: 40px 30px; }
+  .rc-h { font-size: 42px; }
+  .rc-h span { font-size: 48px; }
+  .scene-footer { flex-direction: column; align-items: center; gap: 15px; }
+  .sf-btn { width: 100%; max-width: 320px; justify-content: center; }
+}
+
+@media(max-width: 480px) {
+  #envWrap { transform: scale(0.55); }
+  .rs-content { gap: 50px; padding-top: 120px; }
+  .rc-inner { padding: 35px 24px; }
+  .rc-h { font-size: 34px; }
+  .rc-h span { font-size: 40px; }
+  .rc-body { font-size: 14px; }
+  
+  /* Ajuste del Bono para móviles pequeños */
+  .bono-reveal { max-width: 340px; height: 200px; }
+  .bf-in { padding: 20px 24px; }
+  .bf-logo { font-size: 18px; }
+  .bf-qm { font-size: 30px; left: -10px; top: -5px; }
+  .bf-mid { font-size: 12px; max-width: 200px; }
+  .bf-inc-val { font-size: 16px; }
+  .bb-banda { top: 30px; height: 35px; }
+  .bb-in { padding: 80px 24px 20px; }
+  .bb-q { font-size: 10px; line-height: 1.4; }
+  .bb-logo2 { font-size: 14px; }
+  
+  /* Botones y UI */
+  .btn-lang, #btnReset { font-size: 9px; padding: 6px 12px; top: 15px; }
+  .btn-lang { left: 15px; }
+  #btnReset { right: 15px; }
+  .intro-label em { font-size: 18px; }
+  .start-btn { font-size: 9px; padding: 15px; }
+  
+  .ci-title { font-size: 34px; }
+  .ci-title span { font-size: 40px; }
+  #activationMsg{ bottom:-40px; font-size: 8px;}
 }
 </style>
 </head>
@@ -287,10 +327,6 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-fa
 <!-- GRAIN & LUZ -->
 <div class="grain"></div>
 <div class="ambient-light"></div>
-
-<!-- CUSTOM CURSOR -->
-<div id="cur"></div>
-<div id="curR"></div>
 
 <!-- LLUVIA BACKGROUND -->
 <canvas id="rainBg"></canvas>
@@ -335,7 +371,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-fa
 
   <!-- ESTADO 2: SOBRE 3D -->
   <div id="envWrap">
-    <div id="env">
+    <div id="env" onclick="openInvite()">
       <!-- BARRERA DE PROTECCIÓN -->
       <div class="shield-barrier"></div>
       
@@ -347,7 +383,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-fa
         <div class="env-flap"></div>
 
         <!-- SELLO -->
-        <div class="env-seal">
+        <div class="env-seal" id="sealBtn">
           <div class="seal-wax">
             <svg width="40" height="50" viewBox="0 0 36 44" fill="none">
               <path d="M18 2L34 9V24C34 35 27 40 18 43C9 40 2 35 2 24V9L18 2Z" stroke="rgba(255,255,255,0.8)" stroke-width="1.5"/>
@@ -355,6 +391,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-fa
             </svg>
           </div>
           <div class="seal-txt">AeroShield</div>
+          <div class="seal-hint" data-es="Toca para abrir" data-en="Tap to open">Toca para abrir</div>
         </div>
 
         <div class="env-meta-l" data-es="Edición Limitada" data-en="Limited Edition">Edición Limitada</div>
@@ -381,135 +418,131 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--black);font-fa
               <div class="ci-ev-lbl" data-es="Detalles del Evento" data-en="Event Details">Detalles del Evento</div>
               <div class="ci-ev-date" data-es="Fecha por confirmar" data-en="Date to be confirmed">Fecha por confirmar</div>
               <div class="ci-ev-time" data-es="Hora por definir" data-en="Time to be announced">Hora por definir</div>
-              <div class="ci-ev-place" data-es="Locación por confirmar — Próximamente" data-en="Location to be announced — Coming soon">Locación por confirmar — Próximamente</div>
-            </div>
+            <div class="ci-ev-place" data-es="Locación por confirmar — Próximamente" data-en="Location to be announced — Coming soon">Locación por confirmar — Próximamente</div>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- BOTÓN ABRIR -->
-    <button id="btnOpen" onclick="openInvite()">
-      <span data-es="◈ Abrir Invitación" data-en="◈ Open Invitation">◈ Abrir Invitación</span>
-    </button>
   </div>
 
 </div>
 
 <!-- ESTADO 3: LECTOR + BONO -->
 <div id="readerScene">
+  <div class="rs-content">
 
-  <!-- TARJETA LECTORA -->
-  <div class="reader-card">
-    <div id="readProgress"></div>
-    <div class="rc-inner">
-      <div class="rc-eye" data-es="Lanzamiento Global AeroShield" data-en="AeroShield Global Launch">Lanzamiento Global AeroShield</div>
-      <div class="rc-h">
-        <span data-es="Ver Claro" data-en="Seeing Clearly">Ver Claro</span>
-        <div data-es="Lo Cambia Todo." data-en="Changes Everything.">Lo Cambia Todo.</div>
-      </div>
-      <div class="rc-rule"></div>
-      <div class="rc-body">
-        <span data-es="Para el motociclista que sale todos los días." data-en="For the motorcyclist who rides every day.">Para el motociclista que sale todos los días.</span><br>
-        <span data-es="Para el padre, la madre, el hijo o la hija que solo quiere volver a casa." data-en="For the father, mother, son, or daughter who just wants to make it home.">Para el padre, la madre, el hijo o la hija que solo quiere volver a casa.</span><br><br>
-        <span data-es="AeroShield no es un accesorio." data-en="AeroShield isn't an accessory.">AeroShield no es un accesorio.</span><br>
-        <strong data-es="Es una promesa: Aunque llueva, vas a ver claro…" data-en="It's a promise: Even in the rain, you will see clearly…">Es una promesa: Aunque llueva, vas a ver claro…</strong>
-      </div>
-      <div class="rc-ev">
-        <div class="rc-ev-lbl" data-es="Detalles del Evento" data-en="Event Details">Detalles del Evento</div>
-        <div class="rc-ev-date" data-es="Fecha por confirmar" data-en="Date to be confirmed">Fecha por confirmar</div>
-        <div class="rc-ev-time" data-es="Hora por definir" data-en="Time to be announced">Hora por definir</div>
-        <div class="rc-ev-place" data-es="Locación por confirmar — Próximamente" data-en="Location to be announced — Coming soon">Locación por confirmar — Próximamente</div>
+    <!-- TARJETA LECTORA -->
+    <div class="reader-card">
+      <div id="readProgress"></div>
+      <div class="rc-inner">
+        <div class="rc-eye" data-es="Lanzamiento Global AeroShield" data-en="AeroShield Global Launch">Lanzamiento Global AeroShield</div>
+        <div class="rc-h">
+          <span data-es="Ver Claro" data-en="Seeing Clearly">Ver Claro</span>
+          <div data-es="Lo Cambia Todo." data-en="Changes Everything.">Lo Cambia Todo.</div>
+        </div>
+        <div class="rc-rule"></div>
+        <div class="rc-body">
+          <span data-es="Para el motociclista que sale todos los días." data-en="For the motorcyclist who rides every day.">Para el motociclista que sale todos los días.</span><br>
+          <span data-es="Para el padre, la madre, el hijo o la hija que solo quiere volver a casa." data-en="For the father, mother, son, or daughter who just wants to make it home.">Para el padre, la madre, el hijo o la hija que solo quiere volver a casa.</span><br><br>
+          <span data-es="AeroShield no es un accesorio." data-en="AeroShield isn't an accessory.">AeroShield no es un accesorio.</span><br>
+          <strong data-es="Es una promesa: Aunque llueva, vas a ver claro…" data-en="It's a promise: Even in the rain, you will see clearly…">Es una promesa: Aunque llueva, vas a ver claro…</strong>
+        </div>
+        <div class="rc-ev">
+          <div class="rc-ev-lbl" data-es="Detalles del Evento" data-en="Event Details">Detalles del Evento</div>
+          <div class="rc-ev-date" data-es="Fecha por confirmar" data-en="Date to be confirmed">Fecha por confirmar</div>
+          <div class="rc-ev-time" data-es="Hora por definir" data-en="Time to be announced">Hora por definir</div>
+          <div class="rc-ev-place" data-es="Locación por confirmar — Próximamente" data-en="Location to be announced — Coming soon">Locación por confirmar — Próximamente</div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- BONO DE REGALO -->
-  <div style="display:flex;flex-direction:column;align-items:center;position:relative;">
-    <div class="bono-title" data-es="◈ Bono VIP Reservado ◈" data-en="◈ VIP Voucher Reserved ◈">◈ Bono VIP Reservado ◈</div>
-    
-    <div class="bono-reveal" id="bonoReveal">
-      <div class="bono-card">
-        
-        <!-- FRENTE BONO -->
-        <div class="bono-face bf">
-          <div class="foil"></div>
-          <div class="bf-pat"></div>
-          <div class="bf-in">
-            <div class="bf-top">
-              <div>
-                <div class="bf-logo">AeroShield</div>
-                <div class="bf-type" data-es="Bono de Protección Premium" data-en="Premium Protection Voucher">Bono de Protección Premium</div>
+    <!-- BONO DE REGALO -->
+    <div class="bono-wrap">
+      <div class="bono-title" data-es="◈ Bono VIP Reservado ◈" data-en="◈ VIP Voucher Reserved ◈">◈ Bono VIP Reservado ◈</div>
+      
+      <div class="bono-reveal" id="bonoReveal">
+        <div class="bono-card">
+          
+          <!-- FRENTE BONO -->
+          <div class="bono-face bf">
+            <div class="foil"></div>
+            <div class="bf-pat"></div>
+            <div class="bf-in">
+              <div class="bf-top">
+                <div>
+                  <div class="bf-logo">AeroShield</div>
+                  <div class="bf-type" data-es="Bono de Protección Premium" data-en="Premium Protection Voucher">Bono de Protección Premium</div>
+                </div>
+                <svg width="32" height="40" viewBox="0 0 36 44" fill="none">
+                  <path d="M18 2L34 9V24C34 35 27 40 18 43C9 40 2 35 2 24V9L18 2Z" stroke="#D4AF37" stroke-width="1.5"/>
+                  <path d="M13 24L17 28L24 18" stroke="#FFEA99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
               </div>
-              <svg width="32" height="40" viewBox="0 0 36 44" fill="none">
-                <path d="M18 2L34 9V24C34 35 27 40 18 43C9 40 2 35 2 24V9L18 2Z" stroke="#D4AF37" stroke-width="1.5"/>
-                <path d="M13 24L17 28L24 18" stroke="#FFEA99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="bf-mid">
-              <span class="bf-qm">"</span>
-              <span style="padding-left:15px;display:block;" data-es="Para quien sale todos los días y merece volver siempre." data-en="For those who ride every day and always deserve to return.">Para quien sale todos los días y merece volver siempre.</span>
-            </div>
-            <div class="bf-bot">
-              <div>
-                <div class="bf-inc-lbl" data-es="Beneficio Exclusivo" data-en="Exclusive Benefit">Beneficio Exclusivo</div>
-                <div class="bf-inc-val" data-es="1 AeroShield Reservado" data-en="1 Reserved AeroShield">1 AeroShield Reservado</div>
-                <div class="bf-inc-sub" style="color: var(--gold-light);" data-es="VÁLIDO SOLO CON ASISTENCIA AL EVENTO" data-en="VALID ONLY WITH EVENT ATTENDANCE">VÁLIDO SOLO CON ASISTENCIA AL EVENTO</div>
+              <div class="bf-mid">
+                <span class="bf-qm">"</span>
+                <span style="padding-left:15px;display:block;" data-es="Para quien sale todos los días y merece volver siempre." data-en="For those who ride every day and always deserve to return.">Para quien sale todos los días y merece volver siempre.</span>
               </div>
-              <div class="bf-code">
-                <div class="bf-code-n">VIP · 0001</div>
-                <div class="bars">
-                  <span style="width:2px"></span><span style="width:4px"></span><span style="width:2px"></span><span style="width:6px"></span>
-                  <span style="width:3px"></span><span style="width:2px"></span><span style="width:5px"></span><span style="width:4px"></span>
+              <div class="bf-bot">
+                <div>
+                  <div class="bf-inc-lbl" data-es="Beneficio Exclusivo" data-en="Exclusive Benefit">Beneficio Exclusivo</div>
+                  <div class="bf-inc-val" data-es="1 AeroShield Reservado" data-en="1 Reserved AeroShield">1 AeroShield Reservado</div>
+                  <div class="bf-inc-sub" style="color: var(--gold-light);" data-es="VÁLIDO SOLO CON ASISTENCIA AL EVENTO" data-en="VALID ONLY WITH EVENT ATTENDANCE">VÁLIDO SOLO CON ASISTENCIA AL EVENTO</div>
+                </div>
+                <div class="bf-code">
+                  <div class="bf-code-n">VIP · 0001</div>
+                  <div class="bars">
+                    <span style="width:2px"></span><span style="width:4px"></span><span style="width:2px"></span><span style="width:6px"></span>
+                    <span style="width:3px"></span><span style="width:2px"></span><span style="width:5px"></span><span style="width:4px"></span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- REVERSO BONO -->
-        <div class="bono-face bb">
-          <div class="foil"></div>
-          <div class="bb-banda"></div>
-          <div class="bb-in">
-            <div class="bb-q">
-              <span data-es="Este bono ha sido reservado a tu nombre." data-en="This voucher has been reserved in your name.">Este bono ha sido reservado a tu nombre.</span><br>
-              <span data-es="Valídalo registrando tu ingreso en nuestro lanzamiento oficial." data-en="Validate it by checking in at our official launch.">Valídalo registrando tu ingreso en nuestro lanzamiento oficial.</span><br>
-              <span data-es="Porque la seguridad de los que amas no es negociable." data-en="Because the safety of those you love is non-negotiable.">Porque la seguridad de los que amas no es negociable.</span>
-            </div>
-            <div class="bb-fields">
-              <div class="bb-field"><span class="bb-fl" data-es="Incluye" data-en="Includes">Incluye</span><div class="bb-fl-line"></div> <span style="font-family:var(--font-mono);font-size:8px;color:#5c5346;" data-es="Deflector + Guía + Certificado" data-en="Deflector + Guide + Certificate">Deflector + Guía + Certificado</span></div>
-              <div class="bb-field"><span class="bb-fl" data-es="Condición" data-en="Condition">Condición</span><div class="bb-fl-line"></div> <span style="font-family:var(--font-mono);font-size:8px;color:var(--gold-dark);" data-es="Requiere asistencia presencial" data-en="Requires in-person attendance">Requiere asistencia presencial</span></div>
-            </div>
-            <div class="bb-foot">
-              <div class="bb-logo2">AeroShield</div>
-              <div class="bb-val">
-                <span data-es="Estado: Esperando Activación" data-en="Status: Awaiting Activation">Estado: Esperando Activación</span><br>
-                <span data-es="Ver claro lo cambia todo." data-en="Seeing clearly changes everything.">Ver claro lo cambia todo.</span>
+          <!-- REVERSO BONO -->
+          <div class="bono-face bb">
+            <div class="foil"></div>
+            <div class="bb-banda"></div>
+            <div class="bb-in">
+              <div class="bb-q">
+                <span data-es="Este bono ha sido reservado a tu nombre." data-en="This voucher has been reserved in your name.">Este bono ha sido reservado a tu nombre.</span><br>
+                <span data-es="Valídalo registrando tu ingreso en nuestro lanzamiento oficial." data-en="Validate it by checking in at our official launch.">Valídalo registrando tu ingreso en nuestro lanzamiento oficial.</span><br>
+                <span data-es="Porque la seguridad de los que amas no es negociable." data-en="Because the safety of those you love is non-negotiable.">Porque la seguridad de los que amas no es negociable.</span>
+              </div>
+              <div class="bb-fields">
+                <div class="bb-field"><span class="bb-fl" data-es="Incluye" data-en="Includes">Incluye</span><div class="bb-fl-line"></div> <span style="font-family:var(--font-mono);font-size:8px;color:#5c5346;" data-es="Deflector + Guía + Certificado" data-en="Deflector + Guide + Certificate">Deflector + Guía + Certificado</span></div>
+                <div class="bb-field"><span class="bb-fl" data-es="Condición" data-en="Condition">Condición</span><div class="bb-fl-line"></div> <span style="font-family:var(--font-mono);font-size:8px;color:var(--gold-dark);" data-es="Requiere asistencia presencial" data-en="Requires in-person attendance">Requiere asistencia presencial</span></div>
+              </div>
+              <div class="bb-foot">
+                <div class="bb-logo2">AeroShield</div>
+                <div class="bb-val">
+                  <span data-es="Estado: Esperando Activación" data-en="Status: Awaiting Activation">Estado: Esperando Activación</span><br>
+                  <span data-es="Ver claro lo cambia todo." data-en="Seeing clearly changes everything.">Ver claro lo cambia todo.</span>
+                </div>
               </div>
             </div>
           </div>
+
         </div>
-
       </div>
+      <div class="bono-lbl" data-es="◂ Pasa el cursor para girar ▸" data-en="◂ Hover to flip ▸">◂ Pasa el cursor para girar ▸</div>
+      <div id="activationMsg" data-es="✦ Presenta este bono en el evento para activarlo ✦" data-en="✦ Present this voucher at the event to activate it ✦">✦ Presenta este bono en el evento para activarlo ✦</div>
     </div>
-    <div class="bono-lbl" data-es="◂ Pasa el cursor para girar ▸" data-en="◂ Hover to flip ▸">◂ Pasa el cursor para girar ▸</div>
-    <div id="activationMsg" data-es="✦ Presenta este bono en el evento para activarlo ✦" data-en="✦ Present this voucher at the event to activate it ✦">✦ Presenta este bono en el evento para activarlo ✦</div>
-  </div>
 
-  <!-- BOTONES DE ACCIÓN INFERIORES -->
-  <div class="scene-footer">
-    <div class="sf-btn sf-date">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-      <span data-es="21 MAY 2026 · 18:40 HRS" data-en="MAY 21, 2026 · 18:40 HRS">21 MAY 2026 · 18:40 HRS</span>
+    <!-- BOTONES DE ACCIÓN INFERIORES -->
+    <div class="scene-footer">
+      <div class="sf-btn sf-date">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        <span data-es="21 MAY 2026 · 18:40 HRS" data-en="MAY 21, 2026 · 18:40 HRS">21 MAY 2026 · 18:40 HRS</span>
+      </div>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=Universidad+Areandina,+Bogotá" target="_blank" class="sf-btn sf-map">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        <span data-es="CÓMO LLEGAR" data-en="HOW TO GET THERE">CÓMO LLEGAR</span>
+      </a>
     </div>
-    <a href="https://maps.app.goo.gl/zpwnHCiECWu6mJ2H6" target="_blank" class="sf-btn sf-map">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-      <span data-es="CÓMO LLEGAR" data-en="HOW TO GET THERE">CÓMO LLEGAR</span>
-    </a>
-  </div>
 
-</div>
+  </div> <!-- Cierre de rs-content -->
+</div> <!-- Cierre de readerScene -->
 
 <script>
 /* ── AUDIO CONTEXT (Web Audio API Sintetizador) ── */
@@ -594,15 +627,13 @@ const AudioSys = {
   }
 };
 
-/* ── INTERACCIÓN CUSTOM CURSOR & PARALLAX ── */
-const cur = document.getElementById('cur'), curR = document.getElementById('curR');
+/* ── INTERACCIÓN PARALLAX ── */
 const envWrap = document.getElementById('envWrap');
 const readerScene = document.getElementById('readerScene');
-let mx=0, my=0, rx=0, ry=0;
+let mx=0, my=0;
 
 document.addEventListener('mousemove', e => {
   mx = e.clientX; my = e.clientY;
-  cur.style.transform = `translate(${mx-3}px,${my-3}px)`;
   
   // Parallax para Scene de lectura
   if(state === 3) {
@@ -610,18 +641,6 @@ document.addEventListener('mousemove', e => {
     const y = (my / window.innerHeight - 0.5) * 20;
     readerScene.style.transform = `translate(${-x}px, ${-y}px)`;
   }
-});
-
-(function animR(){
-  rx += (mx - rx) * 0.15; ry += (my - ry) * 0.15;
-  curR.style.left = `${rx}px`; curR.style.top = `${ry}px`;
-  requestAnimationFrame(animR);
-})();
-
-// Hover en elementos clickeables
-document.querySelectorAll('button, .bono-reveal, .start-btn, a.sf-btn').forEach(el => {
-  el.addEventListener('mouseenter', () => curR.classList.add('hover'));
-  el.addEventListener('mouseleave', () => curR.classList.remove('hover'));
 });
 
 /* ── LLUVIA CANVAS FONDO ── */
@@ -686,7 +705,7 @@ const startOverlay = document.getElementById('start-overlay');
 const introPulse = document.getElementById('intro-pulse');
 const envEl = document.getElementById('env');
 const card = document.getElementById('card');
-const btnOpen = document.getElementById('btnOpen');
+const sealBtn = document.getElementById('sealBtn');
 const readerCard = document.querySelector('.reader-card');
 const readProg = document.getElementById('readProgress');
 const bonoReveal = document.getElementById('bonoReveal');
@@ -734,8 +753,8 @@ function openInvite(){
   if(state !== 2) return;
   state = 2.5; // Transición
   
-  const rect = btnOpen.getBoundingClientRect();
-  spawnSparks(rect.left + rect.width/2, rect.top);
+  const rect = sealBtn.getBoundingClientRect();
+  spawnSparks(rect.left + rect.width/2, rect.top + rect.height/2, 40);
   
   // PARAR LLUVIA Y SACAR EL SOL CON RAYOS
   document.getElementById('rainBg').style.opacity = '0';
@@ -743,7 +762,6 @@ function openInvite(){
   document.getElementById('sun-glow').classList.add('rise');
   document.getElementById('sun-rays-wrap').classList.add('rise');
   
-  btnOpen.classList.add('hidden');
   envEl.classList.add('no-float');
   envEl.style.transform = 'translateZ(50px)'; // Zoom in 3D
   
@@ -790,7 +808,6 @@ function resetAll(){
   envEl.classList.remove('open', 'no-float');
   envEl.style.transform = '';
   card.classList.remove('rise');
-  btnOpen.classList.remove('hidden');
   
   // Restaurar el clima
   document.getElementById('rainBg').style.opacity = '0.6';
